@@ -1,0 +1,17 @@
+
+Features:
+
+1. Implement protos for:
+    a. Auctioneer to relay interaction
+    b. relay to validator interaction
+2. Implement logic to get the validator at any given block from the sequencer rpc.
+3.
+
+
+Code stuff:
+
+1. Write a just file to
+    a. compile the protos
+    b. build the binaries
+2. Use clap to configure the grpc server
+3. Use tower to implement the grpc server

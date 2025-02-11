@@ -1,0 +1,11 @@
+[package]
+name = "relay"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tonic = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread"] }
+protobuf-core = { path = "./../protobuf-core"}
+tracing = { workspace = true }
+tower = { workspace = true }

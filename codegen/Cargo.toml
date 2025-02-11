@@ -1,0 +1,12 @@
+[package]
+name = "codegen"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+protox = "0.7"
+prettyplease = "0.2.29"
+quote = "1"
+syn = "2"
+tempfile = "3.8.0"
+tonic-build = "0.12.3"

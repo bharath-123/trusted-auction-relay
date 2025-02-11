@@ -1,0 +1,7 @@
+version: v2
+modules:
+  - path: proto/
+    name: buf.build/bharath-123/trusted-relay
+
+deps:
+  - buf.build/astria/execution-apis:1839/merge

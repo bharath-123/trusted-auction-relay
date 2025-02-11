@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package auctioneerapis.v1;
+
+import "astria/auction/v1alpha1/bid.proto";
+
+
+message PayloadDeliveryRequest {
+  // auctioneer sends a finalized allocation to the relay
+  astria.auction.v1alpha1.Allocation allocation = 1;
+}
+
+
+message PayloadDeliveryResponse {}
+
+service PayloadDeliveryService {
+  rpc DeliverPayload (PayloadDeliveryRequest) returns (PayloadDeliveryResponse) {}
+}

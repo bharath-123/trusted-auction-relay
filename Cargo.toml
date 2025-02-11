@@ -1,0 +1,16 @@
+[workspace]
+exclude = ["codegen"]
+
+members = [
+    "protobuf-core",
+    "relay"
+]
+
+resolver = "2"
+
+[workspace.dependencies]
+tonic = "0.12.3"
+tokio = "1.43.0"
+prost = "0.13.4"
+tracing = "0.1.41"
+tower = "0.5.2"
