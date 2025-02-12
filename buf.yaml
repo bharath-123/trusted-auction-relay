@@ -2,6 +2,16 @@ version: v2
 modules:
   - path: proto/
     name: buf.build/bharath-123/trusted-relay
+    lint:
+      use:
+        - BASIC
+        - ENUM_VALUE_PREFIX
+        - ENUM_ZERO_VALUE_SUFFIX
+        - FILE_LOWER_SNAKE_CASE
+        - PACKAGE_VERSION_SUFFIX
+        - RPC_REQUEST_STANDARD_NAME
+        - SERVICE_SUFFIX
+      disallow_comment_ignores: true
 
 deps:
   - buf.build/astria/execution-apis:1839/merge

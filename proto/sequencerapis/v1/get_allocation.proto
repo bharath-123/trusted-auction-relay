@@ -4,30 +4,27 @@ package sequencerapis.v1;
 
 import "astria/auction/v1alpha1/bid.proto";
 
-message GetPayloadHeaderRequest {
+message GetAllocationHeaderRequest {
   uint64 block_height = 1;
 }
 
-message GetPayloadHeaderResponse {
+message GetAllocationHeaderResponse {
   bytes allocation_hash = 1;
   // TODO - may not be needed
   uint64 block_height = 2;
 }
 
-service GetPayloadHeader {
-  rpc GetPayload (GetPayloadHeaderRequest) returns (GetPayloadHeaderResponse) {}
-}
-
-message GetPayloadRequest {
+message GetAllocationRequest {
   bytes allocation_hash = 1;
   bytes signed_allocation_hash = 2;
 }
 
-message GetPayloadResponse {
+message GetAllocationResponse {
   uint64 block_height = 1;
   astria.auction.v1alpha1.Allocation allocation = 2;
 }
 
-service GetPayload {
-  rpc GetPayload (GetPayloadRequest) returns (GetPayloadResponse);
+service GetAllocationService {
+  rpc GetAllocationHeader (GetAllocationHeaderRequest) returns (GetAllocationHeaderResponse) {}
+  rpc GetAllocation (GetAllocationRequest) returns (GetAllocationResponse);
 }

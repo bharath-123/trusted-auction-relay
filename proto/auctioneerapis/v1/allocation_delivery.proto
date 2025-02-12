@@ -4,15 +4,13 @@ package auctioneerapis.v1;
 
 import "astria/auction/v1alpha1/bid.proto";
 
-
-message PayloadDeliveryRequest {
+message DeliverAllocationRequest {
   // auctioneer sends a finalized allocation to the relay
   astria.auction.v1alpha1.Allocation allocation = 1;
 }
 
+message DeliverAllocationResponse {}
 
-message PayloadDeliveryResponse {}
-
-service PayloadDeliveryService {
-  rpc DeliverPayload (PayloadDeliveryRequest) returns (PayloadDeliveryResponse) {}
+service AllocationDeliveryService {
+  rpc DeliverAllocation (DeliverAllocationRequest) returns (DeliverAllocationResponse) {}
 }
