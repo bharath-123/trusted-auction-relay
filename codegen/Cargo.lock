@@ -47,6 +47,7 @@ name = "codegen"
 version = "0.1.0"
 dependencies = [
  "prettyplease",
+ "prost-build",
  "protox",
  "quote",
  "syn",

@@ -8,9 +8,23 @@ members = [
 
 resolver = "2"
 
+# TODO - only include deps which are used across all crates
 [workspace.dependencies]
 tonic = "0.12.3"
 tokio = "1.43.0"
 prost = "0.13.4"
 tracing = "0.1.41"
 tower = "0.5.2"
+prost-types = "0.13.4"# ensure this matches the version used by prost
+bytes = "1.10.0"
+base64 = "0.22.1"
+eyre = "0.6"
+thiserror = "2.0.11"
+ed25519-consensus = { version = "2.1.0", default-features = false, features = [
+    "std",
+] }
+rand = "0.8.5"
+zeroize = { version = "1.8.1" , features = ["zeroize_derive"]}
+sha2 = "0.11.0-pre.4"
+pbjson-types = "0.7.0"
+bech32 = "0.11.0"

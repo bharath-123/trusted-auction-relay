@@ -6,3 +6,15 @@ edition = "2021"
 [dependencies]
 tonic = { workspace = true }
 prost = { workspace = true }
+prost-types = { workspace = true }
+bytes = { workspace = true }
+base64 = { workspace = true }
+eyre = { workspace = true }
+thiserror = { workspace = true }
+rand = { workspace = true }
+zeroize = { workspace = true }
+sha2 = { workspace = true }
+ed25519-consensus = { workspace = true }
+pbjson-types = { workspace = true }
+bech32 = { workspace = true }
+hex = "0.4.3"

@@ -1,18 +1,8 @@
 use protobuf_core::generated::relay_protos::helloworld::{
-    greeter_server::{
-        Greeter,
-        GreeterServer,
-    },
-    HelloReply,
-    HelloRequest,
+    greeter_server::{Greeter, GreeterServer},
+    HelloReply, HelloRequest,
 };
-use tonic::{
-    service::interceptor,
-    transport::Server,
-    Request,
-    Response,
-    Status,
-};
+use tonic::{service::interceptor, transport::Server, Request, Response, Status};
 
 #[derive(Default)]
 pub struct MyGreeter {}
