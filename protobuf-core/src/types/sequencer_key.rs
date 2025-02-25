@@ -8,12 +8,12 @@ use crate::types::address::Address;
 use crate::types::crypto::SigningKey;
 
 #[derive(Clone)]
-pub(crate) struct SequencerKey {
+pub struct SequencerKey {
     address: Address,
     signing_key: SigningKey,
 }
 
-pub(crate) struct SequencerKeyBuilder {
+pub struct SequencerKeyBuilder {
     path: Option<PathBuf>,
     prefix: Option<String>,
 }
@@ -22,7 +22,7 @@ impl SequencerKeyBuilder {
     /// Sets the path from which the sequencey key is read.
     ///
     /// The file at `path` should contain a hex-encoded ed25519 secret key.
-    pub(crate) fn path<P: AsRef<Path>>(self, path: P) -> Self {
+    pub fn path<P: AsRef<Path>>(self, path: P) -> Self {
         Self {
             path: Some(path.as_ref().to_path_buf()),
             ..self
@@ -32,14 +32,14 @@ impl SequencerKeyBuilder {
     /// Sets the prefix for constructing a bech32m sequencer address.
     ///
     /// The prefix must be a valid bech32 human-readable-prefix (Hrp).
-    pub(crate) fn prefix<S: AsRef<str>>(self, prefix: S) -> Self {
+    pub fn prefix<S: AsRef<str>>(self, prefix: S) -> Self {
         Self {
             prefix: Some(prefix.as_ref().to_string()),
             ..self
         }
     }
 
-    pub(crate) fn try_build(self) -> eyre::Result<SequencerKey> {
+    pub fn try_build(self) -> eyre::Result<SequencerKey> {
         let Some(path) = self.path else {
             bail!("path to sequencer key file must be set");
         };
@@ -81,18 +81,18 @@ impl SequencerKeyBuilder {
 }
 
 impl SequencerKey {
-    pub(crate) fn builder() -> SequencerKeyBuilder {
+    pub fn builder() -> SequencerKeyBuilder {
         SequencerKeyBuilder {
             path: None,
             prefix: None,
         }
     }
 
-    pub(crate) fn address(&self) -> &Address {
+    pub fn address(&self) -> &Address {
         &self.address
     }
 
-    pub(crate) fn signing_key(&self) -> &SigningKey {
+    pub fn signing_key(&self) -> &SigningKey {
         &self.signing_key
     }
 }

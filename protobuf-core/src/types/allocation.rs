@@ -5,15 +5,15 @@ use crate::types::sequencer_key::SequencerKey;
 use bytes::Bytes;
 use prost::{Message, Name};
 
-#[derive(Debug)]
-pub(crate) struct Allocation {
+#[derive(Debug, Clone)]
+pub struct Allocation {
     signature: Signature,
     verification_key: VerificationKey,
     bid_bytes: pbjson_types::Any,
 }
 
 impl Allocation {
-    fn new(bid: Bid, sequencer_key: &SequencerKey) -> Self {
+    pub fn new(bid: Bid, sequencer_key: &SequencerKey) -> Self {
         let bid_bytes = pbjson_types::Any {
             type_url: raw::Bid::type_url(),
             value: bid.into_raw().encode_to_vec().into(),
@@ -27,7 +27,7 @@ impl Allocation {
         }
     }
 
-    fn into_raw(self) -> raw::Allocation {
+    pub fn into_raw(self) -> raw::Allocation {
         let Self {
             signature,
             verification_key,

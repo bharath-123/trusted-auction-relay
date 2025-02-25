@@ -7,10 +7,12 @@ import "astria/auction/v1alpha1/bid.proto";
 message DeliverAllocationRequest {
   // auctioneer sends a finalized allocation to the relay
   astria.auction.v1alpha1.Allocation allocation = 1;
+  // the block height for which this allocation is valid
+  uint64 block_height = 2;
 }
 
 message DeliverAllocationResponse {}
 
 service AllocationDeliveryService {
-  rpc DeliverAllocation (DeliverAllocationRequest) returns (DeliverAllocationResponse) {}
+  rpc DeliverAllocation (DeliverAllocationRequest) returns (DeliverAllocationResponse);
 }

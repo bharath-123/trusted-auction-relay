@@ -68,6 +68,40 @@ impl ::prost::Name for GetAllocationResponse {
         "/trustedrelay.sequencerapis.v1.GetAllocationResponse".into()
     }
 }
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct GetSignedAllocationRequest {
+    #[prost(uint64, tag = "1")]
+    pub block_height: u64,
+}
+impl ::prost::Name for GetSignedAllocationRequest {
+    const NAME: &'static str = "GetSignedAllocationRequest";
+    const PACKAGE: &'static str = "trustedrelay.sequencerapis.v1";
+    fn full_name() -> ::prost::alloc::string::String {
+        "trustedrelay.sequencerapis.v1.GetSignedAllocationRequest".into()
+    }
+    fn type_url() -> ::prost::alloc::string::String {
+        "/trustedrelay.sequencerapis.v1.GetSignedAllocationRequest".into()
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetSignedAllocationResponse {
+    #[prost(message, optional, tag = "1")]
+    pub allocation: ::core::option::Option<
+        super::super::super::astria::auction::v1alpha1::Allocation,
+    >,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub signed_allocation_hash: ::prost::bytes::Bytes,
+}
+impl ::prost::Name for GetSignedAllocationResponse {
+    const NAME: &'static str = "GetSignedAllocationResponse";
+    const PACKAGE: &'static str = "trustedrelay.sequencerapis.v1";
+    fn full_name() -> ::prost::alloc::string::String {
+        "trustedrelay.sequencerapis.v1.GetSignedAllocationResponse".into()
+    }
+    fn type_url() -> ::prost::alloc::string::String {
+        "/trustedrelay.sequencerapis.v1.GetSignedAllocationResponse".into()
+    }
+}
 /// Generated client implementations.
 pub mod get_allocation_service_client {
     #![allow(
@@ -217,6 +251,35 @@ pub mod get_allocation_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        pub async fn get_signed_allocation(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetSignedAllocationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetSignedAllocationResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/trustedrelay.sequencerapis.v1.GetAllocationService/GetSignedAllocation",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "trustedrelay.sequencerapis.v1.GetAllocationService",
+                        "GetSignedAllocation",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -244,6 +307,13 @@ pub mod get_allocation_service_server {
             request: tonic::Request<super::GetAllocationRequest>,
         ) -> std::result::Result<
             tonic::Response<super::GetAllocationResponse>,
+            tonic::Status,
+        >;
+        async fn get_signed_allocation(
+            self: std::sync::Arc<Self>,
+            request: tonic::Request<super::GetSignedAllocationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetSignedAllocationResponse>,
             tonic::Status,
         >;
     }
@@ -404,6 +474,55 @@ pub mod get_allocation_service_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = GetAllocationSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/trustedrelay.sequencerapis.v1.GetAllocationService/GetSignedAllocation" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetSignedAllocationSvc<T: GetAllocationService>(pub Arc<T>);
+                    impl<
+                        T: GetAllocationService,
+                    > tonic::server::UnaryService<super::GetSignedAllocationRequest>
+                    for GetSignedAllocationSvc<T> {
+                        type Response = super::GetSignedAllocationResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetSignedAllocationRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as GetAllocationService>::get_signed_allocation(
+                                        inner,
+                                        request,
+                                    )
+                                    .await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = GetSignedAllocationSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

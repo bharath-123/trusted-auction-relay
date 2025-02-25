@@ -6,6 +6,9 @@ pub struct DeliverAllocationRequest {
     pub allocation: ::core::option::Option<
         super::super::super::astria::auction::v1alpha1::Allocation,
     >,
+    /// the block height for which this allocation is valid
+    #[prost(uint64, tag = "2")]
+    pub block_height: u64,
 }
 impl ::prost::Name for DeliverAllocationRequest {
     const NAME: &'static str = "DeliverAllocationRequest";

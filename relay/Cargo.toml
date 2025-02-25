@@ -9,3 +9,6 @@ tokio = { workspace = true, features = ["rt-multi-thread"] }
 protobuf-core = { path = "./../protobuf-core"}
 tracing = { workspace = true }
 tower = { workspace = true }
+eyre = { workspace = true }
+thiserror = { workspace = true }
+async-trait = { workspace = true }

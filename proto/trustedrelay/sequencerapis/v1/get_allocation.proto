@@ -15,16 +15,28 @@ message GetAllocationHeaderResponse {
 }
 
 message GetAllocationRequest {
-  bytes allocation_hash = 1;
-  bytes signed_allocation_hash = 2;
+  uint64 block_height = 1;
+  bytes allocation_hash = 2;
+  bytes signed_allocation_hash = 3;
 }
 
 message GetAllocationResponse {
+  // TODO - block_height may not be needed
   uint64 block_height = 1;
   astria.auction.v1alpha1.Allocation allocation = 2;
 }
 
+message GetSignedAllocationRequest {
+  uint64 block_height = 1;
+}
+
+message GetSignedAllocationResponse {
+  astria.auction.v1alpha1.Allocation allocation = 1;
+  bytes signed_allocation_hash = 2;
+}
+
 service GetAllocationService {
-  rpc GetAllocationHeader (GetAllocationHeaderRequest) returns (GetAllocationHeaderResponse) {}
+  rpc GetAllocationHeader (GetAllocationHeaderRequest) returns (GetAllocationHeaderResponse);
   rpc GetAllocation (GetAllocationRequest) returns (GetAllocationResponse);
+  rpc GetSignedAllocation(GetSignedAllocationRequest) returns (GetSignedAllocationResponse);
 }

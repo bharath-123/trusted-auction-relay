@@ -4,16 +4,16 @@ use prost::bytes::Bytes;
 use std::fmt::Display;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub(crate) struct RollupBlockHash(Bytes);
+pub struct RollupBlockHash(Bytes);
 
 impl RollupBlockHash {
     #[must_use]
-    pub(crate) fn new(inner: Bytes) -> Self {
+    pub fn new(inner: Bytes) -> Self {
         Self(inner)
     }
 
     #[must_use]
-    pub(crate) fn as_bytes(&self) -> &[u8] {
+    pub fn as_bytes(&self) -> &[u8] {
         &self.0
     }
 }
